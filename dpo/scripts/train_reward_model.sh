@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_ROOT=${PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}
+LLAMA_FACTORY_DIR=${LLAMA_FACTORY_DIR:-${PROJECT_ROOT}/LlamaFactory}
+PYTHON_BIN=${PYTHON_BIN:-python3}
+CONFIG=${CONFIG:-dpo/configs/qwen3_06b_code_full_rm.yaml}
+GPU_ID=${GPU_ID:-0}
+
+cd "${PROJECT_ROOT}"
+export PYTHONPATH="${LLAMA_FACTORY_DIR}/src:${PYTHONPATH:-}"
+export HF_DATASETS_OFFLINE=${HF_DATASETS_OFFLINE:-1}
+export TRANSFORMERS_OFFLINE=${TRANSFORMERS_OFFLINE:-1}
+export WANDB_DISABLED=${WANDB_DISABLED:-true}
+export TOKENIZERS_PARALLELISM=${TOKENIZERS_PARALLELISM:-false}
+
+CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${GPU_ID}}" \
+"${PYTHON_BIN}" -m llamafactory.cli train "${CONFIG}"

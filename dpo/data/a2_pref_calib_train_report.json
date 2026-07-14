@@ -1,0 +1,26 @@
+{
+  "source": "/root/project/best_path/runs/best_full_dpo_a5_20260702/data/a3_high_confidence.json",
+  "train_file": "/root/project/dpo/data/a2_pref_calib_train.json",
+  "eval_file": "/root/project/dpo/data/a2_pref_calib_eval.json",
+  "train_name": "a2_pref_calib_train",
+  "eval_name": "a2_pref_calib_eval",
+  "seed": 20260708,
+  "raw_rows": 8797,
+  "kept_rows": 4823,
+  "train_rows": 2000,
+  "eval_rows": 256,
+  "filters": {
+    "min_response_chars": 40,
+    "max_response_chars": 6000,
+    "max_length_ratio": 2.5,
+    "require_chosen_code": true,
+    "allow_duplicate_prompts": false
+  },
+  "counts": {
+    "extreme_length_gap": 984,
+    "kept": 7595,
+    "response_too_short": 17,
+    "response_too_long": 201,
+    "duplicate_prompt": 2772
+  }
+}

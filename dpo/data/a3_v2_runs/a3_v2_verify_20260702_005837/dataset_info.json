@@ -1,0 +1,55 @@
+{
+  "code_dpo_a3_v2_raw_train": {
+    "file_name": "code_dpo_a3_v2_raw_train.json",
+    "formatting": "alpaca",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_a3_v2_clean_train": {
+    "file_name": "code_dpo_a3_v2_clean_train.json",
+    "formatting": "alpaca",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_a3_v2_high_confidence_train": {
+    "file_name": "code_dpo_a3_v2_high_confidence_train.json",
+    "formatting": "alpaca",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_a3_v2_debug_train": {
+    "file_name": "code_dpo_a3_v2_debug_train.json",
+    "formatting": "alpaca",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_a3_v2_generation_test": {
+    "file_name": "code_dpo_a3_v2_generation_test.json",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "dataset_name": "a2full_reward_ppo_train",
+  "output": "/root/project/dpo/data/a2full_reward_ppo_train.json",
+  "rows": 163,
+  "mbpp_dir": "/root/mbpp",
+  "mbpp_config": "sanitized",
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "dpo_source": "code_dpo_chain_train.json",
+  "dpo_rows_requested": 0,
+  "seed": 42
+}

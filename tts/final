@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+target="/usr/local/bin/pathcoder"
+if [[ ! -x "${target}" ]]; then
+  target="/root/project/tts/pathcoder"
+fi
+exec "${target}" "$@"

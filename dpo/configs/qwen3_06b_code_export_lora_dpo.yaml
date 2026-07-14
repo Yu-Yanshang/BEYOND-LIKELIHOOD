@@ -1,0 +1,12 @@
+### model
+model_name_or_path: ./Qwen3-0.6B
+adapter_name_or_path: ./dpo/outputs/qwen3_06b_code_lora_dpo
+trust_remote_code: true
+finetuning_type: lora
+template: qwen3_nothink
+
+### export
+export_dir: ./dpo/outputs/qwen3_06b_code_lora_dpo_merged
+export_size: 2
+export_device: cpu
+export_legacy_format: false

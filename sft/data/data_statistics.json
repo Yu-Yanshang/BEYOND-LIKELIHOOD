@@ -1,0 +1,41 @@
+{
+  "raw_total": 18612,
+  "final_usable": 10327,
+  "train_valid_test_counts": [
+    9294,
+    516,
+    517
+  ],
+  "split_ratios": {
+    "train": 0.8999709499370582,
+    "valid": 0.04996610825990123,
+    "test": 0.05006294180304057
+  },
+  "filter_breakdown": {
+    "instruction too short or lack task keywords": 5753,
+    "invalid python syntax": 1430,
+    "invalid python syntax; instruction too short or lack task keywords": 655,
+    "output length out of [10, 2048]": 447
+  },
+  "instruction_len": {
+    "mean": 91.49268345168926,
+    "median": 84.0,
+    "percentiles": {
+      "25%": 70.0,
+      "75%": 103.0
+    }
+  },
+  "input_len": {
+    "mean": 26.755326016785023,
+    "median": 14.0
+  },
+  "output_len": {
+    "mean": 330.7769528728212,
+    "median": 254.0,
+    "percentiles": {
+      "25%": 149.0,
+      "75%": 423.0
+    }
+  },
+  "seed": 42
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "a2_v2.1",
+  "created_at": "2026-07-01T17:47:45+00:00",
+  "run_id": "a2_v2_accept_20260702_impl",
+  "profile": "acceptance",
+  "project_root": "/root/project",
+  "base_model": "/root/project/Qwen3-0.6B",
+  "template": "qwen3",
+  "enable_thinking": false,
+  "cutoff_len": 2048,
+  "seed": 42,
+  "source_data": {
+    "train": {
+      "path": "/root/project/sft/data/code_sft_train.json",
+      "sha256": "82cfc0baa1a73181b7a9e18cb489487d33cf080cab5d2b09e1c7ff01221e158e",
+      "rows": 16348
+    },
+    "valid": {
+      "path": "/root/project/sft/data/code_sft_valid.json",
+      "sha256": "ac06821d849de170e13581e233af7de860c941121561805d293d6b4bdb1c27c7",
+      "rows": 908
+    },
+    "test": {
+      "path": "/root/project/sft/data/code_sft_test.json",
+      "sha256": "b5962aa65b082de485ab483d32399c15bcd9f555ee07e978da891eeca4a5d109",
+      "rows": 909
+    },
+    "mbpp": {
+      "path": "/root/project/sft/data/mbpp_sanitized_test.json",
+      "sha256": "b4329e5216993102bd6cd66008fccb6439233007d22174dc0101935a3355b8ca",
+      "rows": 257
+    }
+  },
+  "run_data_dir": "/root/project/sft/data/a2_v2_runs/a2_v2_accept_20260702_impl",
+  "run_output_dir": "/root/project/sft/outputs/a2_v2_runs/a2_v2_accept_20260702_impl",
+  "variants": [
+    "full",
+    "qlora",
+    "qdora"
+  ],
+  "acceptance_contract": {
+    "max_steps": 30,
+    "train": 256,
+    "valid": 64,
+    "test": 32,
+    "mbpp": 32
+  },
+  "formal_contract": {
+    "num_train_epochs": 3.0,
+    "mbpp_select": 64,
+    "mbpp_final": 257
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "instruction": "Create a python function that finds the median value of a list of integers, where the length of the list is greater than two.",
+    "input": "",
+    "output": "def find_median(lst):\n\tlst.sort() \n\tif len(lst) % 2 != 0: \n\t\treturn lst[len(lst)//2]\n\treturn (lst[len(lst)//2] + lst[len(lst)//2 - 1]) / 2.0"
+  },
+  {
+    "instruction": "Create a program in Python to find all pairs of elements in a list with the given difference.",
+    "input": "[9, 4, 7, 5], 4",
+    "output": "def find_pair_with_difference(list, difference):\n    result = []\n    for i in range(len(list)):\n        for j in range(i+1, len(list)):\n            if list[j] - list[i] == difference:\n                result.append((list[i], list[j]))\n    return result\n\nlist=[9, 4, 7, 5]\ndifference = 4\nresult = find_pair_with_difference(list, difference)\nprint(result)"
+  },
+  {
+    "instruction": "Given a value for the parameter \"numRows\" and a Python list of lists as input data, write a Python program that prints out a valid HTML table.",
+    "input": "numRows: 3\nData: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+    "output": "numRows = 3\ndata = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\nprint('<table border=\"1\">')\n\nfor i in range(numRows):\n    print('<tr>')\n    for j in range(len(data[i])):\n        print('<td>' + str(data[i][j]) + '</td>')\n    print('</tr>')\n\nprint('</table>')"
+  },
+  {
+    "instruction": "Create a GUI application in Python that displays \"Welcome to our application\".",
+    "input": "",
+    "output": "import tkinter\nwindow = tkinter.Tk()\nwindow.title('My Application')\nwindow.geometry('200x200')\nlbl = tkinter.Label(window,text=\"Welcome to our application!\")\nlbl.pack()\nwindow.mainloop()"
+  },
+  {
+    "instruction": "Develop a function in Python that takes a list of strings as input and returns a dictionary mapping each string to its length.",
+    "input": "[\"apple\", \"mango\", \"banana\"]",
+    "output": "def getStringLengths(words):\n    # Create an empty dictionary \n    lengths = {} \n\n    # For each word in the list of words\n    for word in words:\n        # find the length of the word\n        length = len(word)\n        # add the length of the word to the dictionary\n        lengths[word] = length \n\n    # return the dictionary\n    return lengths\n\nprint(getStringLengths([\"apple\", \"mango\", \"banana\"]))"
+  },
+  {
+    "instruction": "Design a Python algorithm to determine if a given number x is a prime number.",
+    "input": "",
+    "output": "def is_prime(x):\n    if x < 2:\n        return False \n    for i in range(2, int(x ** 0.5) + 1):\n        if x % i == 0:\n            return False\n    return True"
+  },
+  {
+    "instruction": "Develop a class in Python to keep track of stock prices",
+    "input": "Symbol: AAPL",
+    "output": "class Stock:\n  def __init__(self, symbol):\n    self.symbol = symbol\n    self.prices = []\n \n  def add_price(self, price):\n    self.prices.append(price)\n \n  def get_prices(self):\n    return self.prices\n      \nAAPL = Stock('AAPL')\nAAPL.add_price(191.43)\nAAPL.add_price(193.57)\nAAPL.add_price(190.08)\nAAPL.get_prices()"
+  },
+  {
+    "instruction": "Create a Python 3 program that prints out the numbers from 1 to 10 in reverse order.",
+    "input": "",
+    "output": "for i in range(10, 0, -1):\n    print(i)"
+  },
+  {
+    "instruction": "Generate a text-based progress bar using Python.",
+    "input": "",
+    "output": "import sys \n\ndef progress_bar(iteration, total, length=50, fill='█'):\n    iteration = iteration + 1\n    percent = (\"{0:.1f}\").format(100 * (iteration / float(total)))\n    filledLength = int(length * iteration // total)\n    bar = fill * filledLength + '-' * (length - filledLength)\n    sys.stdout.write('\\r |{}| {}% {}'.format(bar,percent, \"Complete\"))\n    sys.stdout.flush()"
+  },
+  {
+    "instruction": "Write a Python program to compare two strings and print the number of times the second string appears in the first string.",
+    "input": "\"The quick brown fox jumps over the lazy dog\", \"fox\"",
+    "output": "def count_word_occurrence(str1, str2):\n    count = 0\n    for word in str1.split():\n        if word == str2:\n            count += 1\n\n    return count\n\noccurrence = count_word_occurrence(\"The quick brown fox jumps over the lazy dog\", \"fox\")\nprint(occurrence)"
+  },
+  {
+    "instruction": "Perform a linear-time search on a given list of numbers in Python.",
+    "input": "lst=[5,3,7,2,1]\nx = 3",
+    "output": "def linear_search(lst, x):\n    for i in range(len(lst)):\n        if lst[i] == x:\n            return i\n    return -1\n\nprint(linear_search([5,3,7,2,1], 3))"
+  },
+  {
+    "instruction": "Optimize the following Python program to count the frequencies of characters in a string.",
+    "input": "string = \"String Counting\"",
+    "output": "def countCharacters(string): \n    # Create dictionary to return  \n    # count of each character \n    str_dict = {} \n  \n    # Count frequency of each \n    # character of the string \n    for i in string: \n        if i in str_dict: \n            str_dict[i] += 1\n        else: \n            str_dict[i] = 1\n  \n    return str_dict \n\n# Driver code \nstring = \"String Counting\"\n\n# Print result \nprint(countCharacters(string))"
+  },
+  {
+    "instruction": "Write a Python program that checks two given strings to see if they are anagrams of each other.",
+    "input": "",
+    "output": "def is_anagram(s1, s2):\n    # Sort the strings \n    s1 = sorted(s1) \n    s2 = sorted(s2) \n  \n    # If sorted strings are equal \n    return s1 == s2 \n  \n# Driver code \ns1 = \"listen\"\ns2 = \"silent\"\nif (is_anagram(s1, s2)): \n    print(\"The strings are anagrams.\") \nelse: \n    print(\"The strings aren't anagrams.\")"
+  },
+  {
+    "instruction": "Create a Python program that displays the elements of an array in reverse order.",
+    "input": "",
+    "output": "def reverse_array(arr):\n    \"\"\"Prints the elements of an array in reverse order\"\"\"\n    length = len(arr)\n    for i in reversed(range(length)):\n        print(arr[i], end=\" \")"
+  },
+  {
+    "instruction": "Implement a method in Python that takes an integer n and returns the n-th Fibonacci number.",
+    "input": "Not applicable",
+    "output": "def fibonacci(n): \n if n==0: \n return 0\n elif n==1: \n return 1\n else: \n return fibonacci(n-1)+fibonacci(n-2)"
+  },
+  {
+    "instruction": "Generate a program in Python to print all prime numbers between 1 and 50.",
+    "input": "",
+    "output": "# print all prime numbers between 1 and 50\nfor num in range(1,51): \n      \n   # prime numbers are greater than 1 \n   if num > 1: \n       for i in range(2,num): \n           if (num % i) == 0: \n               break\n       else: \n           print(num)"
+  },
+  {
+    "instruction": "Generate a Python code to create a class which creates an empty dictionary with the given keys.",
+    "input": "\"name, age\"",
+    "output": "class EmptyDictionary:\n    def __init__(self, keys):\n        self.keys = [k.strip() for k in keys.split(\",\")]\n        self.dictionary = {k: None for k in self.keys}\n            \n    def get_dictionary(self):\n        return self.dictionary"
+  },
+  {
+    "instruction": "Optimize the following piece of code written in Python",
+    "input": "def add(a, b):\n    c = a + b\n    return c",
+    "output": "def add(a, b):\n    return a + b  # remove unnecessary intermediate variable 'c' and return the result directly."
+  },
+  {
+    "instruction": "Write a python program to find the sum of squares of all numbers in a set",
+    "input": "Set: {1, 2, 3}",
+    "output": "def sum_squares(s):\n    total = 0\n    for x in s:\n        total += x * x\n    return total"
+  },
+  {
+    "instruction": "Create a neural network classifier in Python to predict the correct gender of a given name.",
+    "input": "Michael",
+    "output": "# Load necessary modules\nimport numpy as np\nfrom sklearn.preprocessing import LabelEncoder\nfrom keras.utils import to_categorical\nfrom keras.models import Sequential\nfrom keras.layers import Dense\n\n# Load the data\nname_data = ['Michael', 'John', 'Sarah', 'Paul', 'Rebecca', 'Brian']\ngender_data = [0, 0, 1, 0, 1, 0]\n\n# Pre-process the data\nle = LabelEncoder()\nname_data_encoded = le.fit_transform(name_data)\npredict_data = ['Michael']\npredict_data_encoded = le.transform(predict_data)\ngender_data_categorical = to_categorical(gender_data)\n\n# Create the model\nmodel = Sequential()\nmodel.add(Dense(8, activation='relu', input_shape=(1,)))\nmodel.add(Dense(2, activation=\"softmax\"))\nmodel.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])\n\n# Train the model\nmodel.fit(name_data_encoded, gender_data_categorical, epochs=30, batch_size=1)\n\n# Make predictions\nprediction = model.predict(np.array(predict_data_encoded).reshape(-1, 1))\nclassification = np.argmax(prediction)\n\nif(classification == 0):\n    print(\"Male\")\nelse:\n    print(\"Female\")"
+  },
+  {
+    "instruction": "Create a method in Python to search through a list and return all elements which are divisible by 5.",
+    "input": "[4, 9, 5, 20, 21, 33]",
+    "output": "def find_division_by_5(lst):\n    \"\"\"Search through a list and return all elements which are divisible by 5\"\"\"\n    result = []\n    for item in lst:\n        if item % 5 == 0:\n            result.append(item)\n    \n    return result\n    \nif __name__ == '__main__':\n    lst = [4, 9, 5, 20, 21, 33]\n    print(find_division_by_5(lst))"
+  },
+  {
+    "instruction": "Create a Python script that makes an API request and returns the results. The API endpoint should return a list of countries and their capital cities.",
+    "input": "Not applicable",
+    "output": "import requests\n \n# Make the API request\nurl = 'https://restcountries.eu/rest/v2/all'\nr = requests.get(url)\ndata = r.json()\n \n# Initialize an empty list for the results\nresults = []\n \n# Extract the relevant information and append to the list\nfor country in data:\n  results.append((country['name'], country['capital']))\n \n# Print the results\nfor result in results:\n print(f'{result[0]}: {result[1]}')"
+  },
+  {
+    "instruction": "Generate a Python script to find common elements in two lists.",
+    "input": "list1 = [1, 2, 3, 4]\nlist2 = [3, 4, 5, 6]",
+    "output": "def find_common_elements(list1, list2):\n    result = []\n    for val in list1:\n        if val in list2:\n            result.append(val)\n    return result\n\nlist1 = [1, 2, 3, 4]\nlist2 = [3, 4, 5, 6]\n\nresult = find_common_elements(list1, list2)\nprint(result)"
+  },
+  {
+    "instruction": "Create an optimized web crawler using Python to explore a given website.",
+    "input": "Website Url: https://www.example.com",
+    "output": "import requests\nfrom bs4 import BeautifulSoup\n\n# define the URL to crawl\nurl = 'https://www.example.com' \n\n# make an HTTP request to the given URL\nresponse = requests.get(url)\n\n# print a message to indicate the request type\nprint(f'Crawling {url}')\n\n# parse the response and extract the HTML\nhtml = BeautifulSoup(response.text, 'html.parser')\n\n# define a list to store the URLs\nlinks = []\n\n# traverse the HTML page and find all 'a' tags\nfor link in html.find_all('a'):\n  # extract the 'href' value for each 'a' tag\n  links.append(link.get('href'))\n\n# print the list of urls for the web page\nprint('\\n'.join(links))"
+  },
+  {
+    "instruction": "Design a recursive function in Python that computes the $n^{th}$ Fibonacci number.",
+    "input": "",
+    "output": "def Fibonacci(n): \n   if n<0: \n      print(\"Incorrect input\") \n   elif n==1: \n      return 0\n   elif n==2: \n      return 1\n   else: \n      return Fibonacci(n-1)+Fibonacci(n-2)"
+  },
+  {
+    "instruction": "Write a Python program to generate a list of prime numbers within a specified range.",
+    "input": "",
+    "output": "def prime_range(lower, upper):\n    prime_list = []\n    for num in range(lower, upper +1):\n        if num > 1:\n            for i in range(2, num):\n                if (num % i) == 0:\n                    break\n            else:\n                prime_list.append(num)\n\n    return prime_list\n\nlower = 1\nupper = 20\nprint(prime_range(lower, upper))"
+  },
+  {
+    "instruction": "Create a Python script to read data from a database.",
+    "input": "Table Name: 'customers'",
+    "output": "import psycopg2\n\nconnection = psycopg2.connect(database='dbname', user='user', password='password', host='localhost', port='5432')\n\ncursor = connection.cursor()\n\ncursor.execute('SELECT * FROM customers')\n\nrows = cursor.fetchall()\n\nfor row in rows:\n    print(row)\n    \ncursor.close()"
+  },
+  {
+    "instruction": "Create a JSON-based web service using Python's Flask and SQLite.",
+    "input": "Not applicable",
+    "output": "from flask import Flask, jsonify\nfrom flask_sqlalchemy import SQLAlchemy\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'\n\ndb = SQLAlchemy(app)\n\nclass User(db.Model):\n id = db.Column(db.Integer, primary_key=True)\n username = db.Column(db.String(80), unique=True, nullable=False)\n email = db.Column(db.String(120), unique=True, nullable=False)\n\ndb.create_all()\n\n@app.route('/users', methods=['GET'])\ndef get_users():\n users = User.query.all()\n return jsonify([user.serialize() for user in users])\n\n@app.route('/user/<int:user_id>', methods=['GET'])\ndef get_user_by_id(user_id):\n user = User.query.get(user_id)\n if user is None:\n  return jsonify({'error': 'User not found'}), 404\n return jsonify(user.serialize())\n\nif __name__ == '__main__':\n app.run(debug=True)"
+  },
+  {
+    "instruction": "Create a python script that sorts a list of tuples based on the second element.",
+    "input": "tuples = [('a',3), ('d', 1), ('c', 2)]",
+    "output": "sortedTuples = sorted(tuples, key = lambda x: x[1])"
+  },
+  {
+    "instruction": "Write a Python program that multiplies all even numbers in a given list.",
+    "input": "",
+    "output": "def multiplyEvens(numbers):\n    # Initialize result \n    result = 1\n      \n    # Multiply all even elements \n    for x in numbers: \n        if x % 2 == 0: \n            result = result * x \n    return result \n  \n# Driver code \nassert multiplyEvens([2, 3, 4, 5, 6]) == 48"
+  },
+  {
+    "instruction": "Write a Python program to compare two strings to determine which string would appear first in alphabetical order.",
+    "input": "string1 = \"hello\"\nstring2 = \"world\"",
+    "output": "string1 = \"hello\"\nstring2 = \"world\"\n\nif string1 < string2:\n    print(string1 + \" comes before \" + string2 + \" alphabetically\")\nelse:\n    print(string2 + \" comes before \" + string1 + \" alphabetically\")"
+  },
+  {
+    "instruction": "Develop an algorithm to find the shortest path between two points in a given grid",
+    "input": "",
+    "output": "# Python program to find the shortest path between \n# a given source cell to a destination cell. \n# Rows and columns in given grid must be \n# numbered such that (0,0) can \n# be most top left cell. \n  \n# Utility function to find the \n# shortest path between \n# a given source cell to a destination cell. \ndef find_shortest_path(grid,m,n): \n  \n    # Create a queue for/ BFS and \n    # mark source cell as visited \n    queue = [] \n  \n    # Mark the source cell as visited \n    # and enqueue the source node \n    queue.append([0, 0]) \n    visited = set((0, 0)) \n  \n    # While queue is not empty \n    while queue: \n        # pop front node from queue and  \n        # process it \n        i, j = queue.pop(0) \n  \n        # if destination is reached, \n        # stop the loop \n        if i == n - 1 and j == n - 1: \n            break\n  \n        # check for all 4 possible movements \n        # from current cell \n        for x, y in [[-1, 0], [0, -1], [1, 0], [0, 1]]: \n            # if current cell is valid, has path  \n            # and not visited yet \n            if 0 <= x + i < m and 0 <= y + j < n and grid[x + i][y + j] and (x + i, y + j) not in visited: \n                # add the cell to queue \n                queue.append([x + i, y + j]) \n  \n                # mark cell as visited \n                visited.add((x + i, y + j)) \n  \n    return visited \n  \n# Driver Code \n# given two-dimensional array with 1s as blocked \n# cells and 0s as cells through which \n# we can move \ngrid = [[1, 0, 0], \n        [1, 1, 0], \n        [1, 1, 1]] \n  \nif find_shortest_path(grid, 3, 3): \n    print('Yes') \nelse: \n    print('No')"
+  }
+]

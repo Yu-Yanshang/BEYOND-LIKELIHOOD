@@ -1,0 +1,56 @@
+### model
+model_name_or_path: ./Qwen3-0.6B
+trust_remote_code: true
+ref_model: ./Qwen3-0.6B
+reward_model: code_heuristic
+reward_model_type: function
+
+### method
+stage: ppo
+do_train: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.05
+cutoff_len: 512
+ppo_buffer_size: 1
+ppo_epochs: 1
+
+### dataset
+dataset_dir: ./dpo/data
+dataset: code_ppo_train
+template: qwen3_nothink
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: ./dpo/outputs/qwen3_06b_code_lora_ppo_reward_fn
+logging_steps: 5
+save_steps: 200
+save_total_limit: 2
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 1
+learning_rate: 1.0e-6
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_grad_norm: 1.0
+gradient_checkpointing: true
+fp16: true
+bf16: false
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### generation
+max_new_tokens: 128
+do_sample: true
+top_p: 0.9
+temperature: 0.7

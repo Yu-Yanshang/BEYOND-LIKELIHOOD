@@ -1,0 +1,29 @@
+{
+  "code_sft_train": {
+    "file_name": "code_sft_train.json",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "code_sft_valid": {
+    "file_name": "code_sft_valid.json",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "code_sft_test": {
+    "file_name": "code_sft_test.json",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

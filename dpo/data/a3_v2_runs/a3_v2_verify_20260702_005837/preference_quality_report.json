@@ -1,0 +1,169 @@
+{
+  "score_version": "a3_v2_quality_score_1.0",
+  "quality_threshold": 0.72,
+  "score_weights": {
+    "integrity_score": 0.2,
+    "chosen_code_score": 0.25,
+    "separability_score": 0.25,
+    "length_safety_score": 0.15,
+    "length_balance_score": 0.1,
+    "format_score": 0.05
+  },
+  "token_length_mode": "qwen3_tokenizer",
+  "counts": {
+    "raw_total": 9466,
+    "train_candidates": 8966,
+    "test_candidates": 500,
+    "raw_train": 8924,
+    "clean_train": 8924,
+    "high_confidence_train": 8797,
+    "debug_train": 128,
+    "generation_test": 485,
+    "train_dropped_before_raw": 42,
+    "test_dropped_before_generation": 15
+  },
+  "score_distribution": {
+    "count": 8924,
+    "min": 0.572654,
+    "p10": 0.802016,
+    "p25": 0.880751,
+    "p50": 0.945531,
+    "p75": 0.973205,
+    "p90": 0.988637,
+    "p95": 0.994052,
+    "p99": 0.998734,
+    "max": 1.0,
+    "mean": 0.919177
+  },
+  "similarity_distribution": {
+    "count": 8924,
+    "min": 0.0,
+    "p10": 0.145161,
+    "p25": 0.274877,
+    "p50": 0.444444,
+    "p75": 0.64,
+    "p90": 0.823138,
+    "p95": 0.914894,
+    "p99": 1.0,
+    "max": 1.0,
+    "mean": 0.464486
+  },
+  "chosen_response_token_distribution": {
+    "count": 8924,
+    "min": 12.0,
+    "p10": 160.0,
+    "p25": 223.75,
+    "p50": 318.0,
+    "p75": 451.0,
+    "p90": 621.0,
+    "p95": 748.0,
+    "p99": 1200.31,
+    "max": 3038.0,
+    "mean": 368.063537
+  },
+  "rejected_response_token_distribution": {
+    "count": 8924,
+    "min": 2.0,
+    "p10": 115.0,
+    "p25": 181.0,
+    "p50": 275.0,
+    "p75": 430.0,
+    "p90": 714.7,
+    "p95": 1243.1,
+    "p99": 1918.77,
+    "max": 2426.0,
+    "mean": 384.510197
+  },
+  "chosen_minus_rejected_response_token_distribution": {
+    "count": 8924,
+    "min": -1931.0,
+    "p10": -204.0,
+    "p25": -61.0,
+    "p50": 27.0,
+    "p75": 123.0,
+    "p90": 229.0,
+    "p95": 306.85,
+    "p99": 556.54,
+    "max": 2698.0,
+    "mean": -16.446661
+  },
+  "flags": {
+    "both_syntax_error": 89,
+    "chosen_syntax_error": 202,
+    "chosen_too_long": 33,
+    "extreme_length_gap": 438,
+    "low_separation": 1059,
+    "near_duplicate": 297,
+    "only_rejected_syntax_ok": 113,
+    "rejected_syntax_error": 662,
+    "rejected_too_long": 124,
+    "response_too_short": 9
+  },
+  "drop_reasons": {
+    "below_quality_threshold": 127,
+    "both_syntax_error": 89,
+    "chosen_syntax_error": 202,
+    "chosen_too_long": 33,
+    "duplicate_in_split": 42,
+    "extreme_length_gap": 438,
+    "low_separation": 1059,
+    "near_duplicate": 297,
+    "only_rejected_syntax_ok": 113,
+    "rejected_syntax_error": 662,
+    "rejected_too_long": 124,
+    "response_too_short": 9
+  },
+  "syntax_proxy_counts": {
+    "both_syntax_ok": 8149,
+    "chosen_only_syntax_ok": 573,
+    "neither_syntax_ok": 89,
+    "rejected_only_syntax_ok": 113
+  },
+  "format_counts": {
+    "chosen_extractable": 8924,
+    "chosen_has_fence": 8924,
+    "rejected_extractable": 8860,
+    "rejected_has_fence": 7381
+  },
+  "prompt_overlap": {
+    "prompt_overlap_allowed_by_project_policy": true,
+    "train_unique_prompt_hashes": 5746,
+    "test_unique_prompt_hashes": 477,
+    "overlap_unique_prompt_hashes": 237,
+    "overlap_examples_sha256_16": [
+      "0073687a028f6593",
+      "01692f20228621dc",
+      "01de9c75d3f830a2",
+      "0207b9d79d9d29a3",
+      "02f910e01274dd2f",
+      "06f0d7d872e17e0f",
+      "076ad5385830c17f",
+      "07a479e5d8d59146",
+      "08febc4b50f490ce",
+      "0ac677030cb49ea1",
+      "0c6f96aa4a3eb4b3",
+      "0dbd5020f0700422",
+      "0de7cc5bf1de5126",
+      "0f862fc205e3518d",
+      "0ffc3a8794ac5d33",
+      "126b81ee8e937736",
+      "12d95eec5e396b84",
+      "15322171bac232f3",
+      "1588bf400e9305e1",
+      "168e4fab63a2e4a8"
+    ]
+  },
+  "charts": [
+    "reports/quality_score_hist.png",
+    "reports/pair_similarity_hist.png",
+    "reports/chosen_response_tokens_hist.png",
+    "reports/rejected_response_tokens_hist.png",
+    "reports/response_token_gap_hist.png",
+    "reports/filter_funnel.png"
+  ],
+  "notes": [
+    "Quality score is a static proxy, not a proof of functional correctness.",
+    "Prompt overlap is intentionally reported but not filtered for this training-run contract.",
+    "Final code correctness should be measured by execution-based evaluation outside A3."
+  ]
+}

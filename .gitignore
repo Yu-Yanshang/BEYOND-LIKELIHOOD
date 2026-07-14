@@ -1,0 +1,38 @@
+__pycache__/
+*.pyc
+.cache/
+logs/
+metrics/
+sft/outputs/
+dpo/outputs/
+tts/outputs/
+
+# Model weights and training state are intentionally not published to GitHub.
+Qwen3-0.6B/
+best_path/runs/
+checkpoint-*/
+checkpoint_*/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.gguf
+
+# Generated experiment and runtime artifacts.
+wandb/
+**/wandb/
+*.log
+*.tar
+*.tar.gz
+*.zip
+
+# Local secrets and editor/runtime files.
+.env
+.env.*
+**/.env
+**/.env.*
+.idea/
+.vscode/
+.DS_Store

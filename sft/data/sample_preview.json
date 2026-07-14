@@ -1,0 +1,27 @@
+[
+  {
+    "instruction": "Create a python program to find the largest prime factor of a number.",
+    "input": "Number: 331",
+    "output": "import math\n\ndef largest_prime_factor(n):\n\n# Separate the list of larger factors of the number into prime and composite numbers \n    factors = []\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            factors.append(i)\n            factors.append(int(n/i))\n# Find the largest prime factor in the list\n    prime_factors = []\n    for potential_factor in factors:\n        is_prime = True\n        for j in range(2,int(math.sqrt(potential_factor))+1):\n            if potential_factor % j == 0 and potential_factor != j: \n                is_prime = False\n        if is_prime:\n            prime_factors.append(potential_factor)\n\n# Return the largest prime factor\n    return max(prime_factors)\n\nprint(largest_prime_factor(331))"
+  },
+  {
+    "instruction": "Write a function in Python that takes two parameters \"n\" and \"k\" and returns the number of ways to jump \"k\" steps, starting from 0, taking 1 or 2 steps at a time, and not going beyond n.",
+    "input": "n = 4, k = 4",
+    "output": "def steps(n, k):\n if k == 0 or n == k:\n  return 1\n if n > k:\n  return steps(n-1, k-1) + steps(n-2, k-1)\n else:\n  return 0"
+  },
+  {
+    "instruction": "Write a method in Python to print each element in a given dictionary.",
+    "input": "{\n    \"Alice\": 23,\n    \"Bob\": 30,\n    \"John\": 27\n}",
+    "output": "def printDict(dictionary): \n    for key in dictionary: \n        print(\"{}: {}\".format(key, dictionary[key])) \n\ndict = {\n    \"Alice\": 23,\n    \"Bob\": 30,\n    \"John\": 27\n}\nprintDict(dict)"
+  },
+  {
+    "instruction": "Write a Python code to find the number of unique paths from a given source to a destination.",
+    "input": "",
+    "output": "def num_unique_paths(m, n):\n    dp = [[0 for x in range(m)] for y in range(n)] \n  \n    # Count of paths to reach any\n    # cell in first column is 1  \n    for i in range(n): \n        dp[i][0] = 1\n  \n    # Count of paths to reach any\n    # cell in first column is 1  \n    for j in range(m): \n        dp[0][j] = 1\n  \n    # Calculate count of paths for other \n    # cells in bottom-up manner using\n    # the recursive solution \n    for i in range(1, n): \n        for j in range(1, m): \n  \n            # By uncommenting the last\n            # part the code calculatest he total\n            # possible paths if the diagonal \n            # Movements are allowed \n            dp[i][j] = dp[i-1][j] + dp[i][j-1]# + dp[i-1][j-1]\n  \n    return dp[n-1][m-1]"
+  },
+  {
+    "instruction": "Create a Python function that takes in a list of numbers, evaluates every 3rd number in the list and returns the total.",
+    "input": "[3, 8, 7, 4, 9, 2, 1, 6]",
+    "output": "def evaluate_list(nums_list):\n    # set counter to 0\n    counter = 0\n    # set total as 0\n    total = 0 \n    # iterate through list\n    for num in nums_list:\n        # check if counter divides by 3\n        if counter%3 == 0:\n            # add number to total\n            total += num\n        # increment counter\n        counter += 1\n    #return total\n    return total\n\nnums_list = [3, 8, 7, 4, 9, 2, 1, 6]\nresult = evaluate_list(nums_list)\n\nprint(result)\n# Output: 14"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-07-01T16:59:24+00:00",
+  "run_id": "a3_v2_verify_20260702_005837",
+  "project_root": "/root/project",
+  "source_dir": "/root/project/py-dpo-v0.1",
+  "source_files": [
+    {
+      "path": "/root/project/py-dpo-v0.1/py-dpo.parquet",
+      "sha256": "b89f16da137df5cfda9b16116d4c5f4188e006885511a2a61544318222a0e6e8",
+      "rows": 9466
+    }
+  ],
+  "data_run_dir": "/root/project/dpo/data/a3_v2_runs/a3_v2_verify_20260702_005837",
+  "output_run_dir": "/root/project/dpo/outputs/a3_v2_runs/a3_v2_verify_20260702_005837",
+  "seed": 42,
+  "test_size": 500,
+  "prompt_template": "Complete the following Python coding task. Return a correct, readable Python solution and include brief reasoning when helpful.\n\nTask:\n{prompt}",
+  "score_version": "a3_v2_quality_score_1.0",
+  "score_weights": {
+    "integrity_score": 0.2,
+    "chosen_code_score": 0.25,
+    "separability_score": 0.25,
+    "length_safety_score": 0.15,
+    "length_balance_score": 0.1,
+    "format_score": 0.05
+  },
+  "quality_threshold": 0.72,
+  "debug_size": 128,
+  "model_path_for_token_lengths": "/root/project/Qwen3-0.6B",
+  "token_length_mode": "qwen3_tokenizer",
+  "qwen3_contract": {
+    "template": "qwen3",
+    "enable_thinking": false
+  },
+  "split_policy": {
+    "type": "row_level_shuffle_then_head_test",
+    "prompt_overlap_allowed_by_project_policy": true,
+    "note": "Group split is intentionally not enforced for this practical training contract."
+  }
+}

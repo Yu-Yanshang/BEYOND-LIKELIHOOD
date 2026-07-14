@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+PYTHON_BIN="${PYTHON_BIN:-/opt/conda/envs/shixun/bin/python}"
+
+MODEL_PATH="${MODEL_PATH:-${PROJECT_ROOT}/best_path/runs/best_full_dpo_a5_20260702/models/a2_full}"
+INPUT_FILE="${INPUT_FILE:-/root/mbpp/sanitized/test-00000-of-00001.parquet}"
+OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/tts/outputs/test_time_scaling_a2_full}"
+STRATEGY="${STRATEGY:-compare}"
+GPU_ID="${GPU_ID:-0}"
+CUDA13_LIB="${CUDA13_LIB:-/opt/conda/envs/shixun/lib/python3.11/site-packages/nvidia/cu13/lib}"
+
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${GPU_ID}}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+export BNB_CUDA_VERSION="${BNB_CUDA_VERSION:-130}"
+case ":${LD_LIBRARY_PATH:-}:" in
+  *":${CUDA13_LIB}:"*) ;;
+  *) export LD_LIBRARY_PATH="${CUDA13_LIB}:${LD_LIBRARY_PATH:-}" ;;
+esac
+
+cd "${PROJECT_ROOT}"
+exec "${PYTHON_BIN}" tts/test_time_scaling.py \
+  --model_path "${MODEL_PATH}" \
+  --input_file "${INPUT_FILE}" \
+  --output_dir "${OUTPUT_DIR}" \
+  --strategy "${STRATEGY}" \
+  --batch_size "${BATCH_SIZE:-4}" \
+  --num_samples "${NUM_SAMPLES:-5}" \
+  --best_of_n "${BEST_OF_N:-5}" \
+  --reflexion_rounds "${REFLEXION_ROUNDS:-2}" \
+  --tree_width "${TREE_WIDTH:-3}" \
+  --tree_depth "${TREE_DEPTH:-2}" \
+  --temperature "${TEMPERATURE:-0.8}" \
+  --top_p "${TOP_P:-0.95}" \
+  --max_new_tokens "${MAX_NEW_TOKENS:-768}" \
+  "$@"

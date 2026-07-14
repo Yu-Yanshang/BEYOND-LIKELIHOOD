@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PROJECT_ROOT="${PROJECT_ROOT:-/root/project}"
+export PYTHON_BIN="${PYTHON_BIN:-/opt/conda/envs/shixun/bin/python}"
+export LLAMA_FACTORY_DIR="${LLAMA_FACTORY_DIR:-${PROJECT_ROOT}/LlamaFactory}"
+export GPU_ID="${GPU_ID:-0}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${GPU_ID}}"
+export PYTHONPATH="${LLAMA_FACTORY_DIR}/src:${PYTHONPATH:-}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export WANDB_DISABLED="${WANDB_DISABLED:-true}"
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"

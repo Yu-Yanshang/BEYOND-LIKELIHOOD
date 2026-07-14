@@ -1,0 +1,322 @@
+[
+  {
+    "instruction": "Implement a Python script to identify the sentiment of a given text.",
+    "input": "Not applicable",
+    "output": "import nltk\nfrom nltk.sentiment.vader import SentimentIntensityAnalyzer \n\ndef sentiment_score(text):\n ss = SentimentIntensityAnalyzer() \n scores = ss.polarity_scores(text)\n return scores \n\ntext = 'This is an amazing movie!'\nscore = sentiment_score(text)\nprint('Positive score: ', score['pos'])\nprint('Negative score: ', score['neg'])\nprint('Neutral score: ', score['neu'])\nprint('Compound score: ', score['compound'])"
+  },
+  {
+    "instruction": "Make a linear regression model with Python to predict the stock prices of Apple Inc.",
+    "input": "",
+    "output": "import pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n# Load the training set\ndata = pd.read_csv(\"apple_data.csv\")\n\n# Separate the features and target\nX = data.iloc[:, :-1].values\ny = data.iloc[:, -1].values\n\n# Train the model\nmodel = LinearRegression().fit(X, y)"
+  },
+  {
+    "instruction": "Create a machine learning script in Python that trains a binary classification model on a dataset with two classes.",
+    "input": "",
+    "output": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\n# Read in data\ndata = pd.read_csv(\"data.csv\")\n\n# Split into train and test\nX = data.drop(\"target_column\", axis=1)\ny = data[\"target_column\"]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Train a binary classification model \nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\n\n# Evaluate model\ny_pred = model.predict(X_test)\naccuracy = (y_pred == y_test).mean() \nprint(\"Model accuracy:\", accuracy)"
+  },
+  {
+    "instruction": "Write a Python program that prints all unique pairs that sum up to a given number.",
+    "input": "Number: 8",
+    "output": "def unique_pairs(number):\n    pairs = set()\n    for i in range(number + 1):\n    \tfor j in range(number + 1):\n            if i + j == number and (j, i) not in pairs:\n                pairs.add((i, j))\n    return pairs"
+  },
+  {
+    "instruction": "Write a Python program to calculate the frequency of each word in a given string.",
+    "input": "\"This is a test test string\"",
+    "output": "def frequency_of_words(s):\n    # split the string into words\n    words = s.split(' ')\n    \n    # create a dictionary and initialize the frequency to 0\n    frequency = {}\n    \n    for word in words:\n        if word not in frequency:\n            # if this is a new word, then add it to the dictionary\n            frequency[word] = 0\n        \n        # increment the frequency of this word\n        frequency[word] += 1\n    \n    return frequency"
+  },
+  {
+    "instruction": "Create a Python script to classify book titles as either fiction or non-fiction.",
+    "input": "",
+    "output": "import nltk\n\ndef classify_book(title):\n    # Tokenize the words in the title\n    tokens = nltk.word_tokenize(title)\n\n    # Create the tagger\n    pos_tag = nltk.pos_tag(tokens)\n\n    # Check for words that are commonly used in fiction titles\n    fiction_words = [\"Novel\", \"Novella\", \"Mystery\", \"Fantasy\", \"Adventure\", \"Thriller\", \"Paranormal\", \"Romance\"]\n    has_fiction_word = any([word in fiction_words for word in tokens])\n\n    if has_fiction_word:\n        return 'Fiction'\n    else:\n        return 'Non-Fiction'"
+  },
+  {
+    "instruction": "Write python program to find the maximum of 3 numbers and display the result",
+    "input": "",
+    "output": "def max_3(n1, n2, n3):\n    max = n1\n    if n2 > max:\n        max = n2\n    if n3 > max:\n        max = n3\n    \n    return max\n\n# Example\nprint(max_3(1, 2, 3))  # Output: 3"
+  },
+  {
+    "instruction": "Design a function in Python to generate a random password containing at least one capital letter, one number and one symbol.",
+    "input": "",
+    "output": "import string\nimport random\n\ndef generate_password():\n    \"\"\"\n    This function will generate a random password\n    containing at least one capital letter, one number \n    and one symbol \n    \"\"\"\n    # Create a list of character types\n    char_types = [string.ascii_uppercase, string.ascii_lowercase, \n                  string.digits, string.punctuation]\n\n    # Initialize an empty password\n    passwd = []\n\n    # Keep generating characters until we get one of each type\n    while True:\n        # Select a random character type\n        type = random.choice(char_types)\n\n        # Select a random character from the type\n        char = random.choice(type)\n\n        # Add the character to the password\n        passwd.append(char)\n\n        # Check if we have characters from all types\n        if any(c in passwd for c in string.ascii_uppercase) and \\\n           any(c in passwd for c in string.ascii_lowercase) and \\\n           any(c in passwd for c in string.digits) and \\\n           any(c in passwd for c in string.punctuation):\n            break\n    \n    # Shuffle the characters\n    random.shuffle(passwd)\n\n    # Convert the charaters to a string\n    passwd = ''.join(passwd)\n\n    return passwd"
+  },
+  {
+    "instruction": "Create a REST API with Python and Django Rest Framework that supports a simple TODO list functionality.",
+    "input": "Not applicable",
+    "output": "from rest_framework import serializers\nfrom .models import Todo\n\nclass TodoSerializer(serializers.ModelSerializer):\n class Meta:\n model = Todo\n fields = '__all__'\n\n# views.py\n\nfrom rest_framework import viewsets\nfrom .models import Todo\nfrom .serializers import TodoSerializer\n\nclass TodoViewSet(viewsets.ModelViewSet):\n queryset = Todo.objects.all()\n serializer_class = TodoSerializer\n\n# urls.py\n\nfrom django.urls import path\nfrom .views import TodoViewSet\n\nurlpatterns = [\n path('todos/', TodoViewSet.as_view()),\n]"
+  },
+  {
+    "instruction": "Generate a Python program to solve a TSP problem for a given set of cities.",
+    "input": "A set of cities",
+    "output": "import random\n\n# Calculate the total distance between two points\ndef distance(c1, c2):\n  return ((c1[0] - c2[0])**2 + (c1[1] - c2[1])**2) ** 0.5\n\n# Calculate the total distance for a complete path\ndef path_distance(cities):\n  dist = 0\n  for i in range(len(cities) - 1):\n    dist += distance(cities[i], cities[i+1])\n  return dist\n\n# Generate a random path of cities\ndef generate_path(cities):\n    path = cities[:]\n    random.shuffle(path)\n    return path\n\n# Simulated Annealing algorithm to optimize the path\ndef anneal(cities):\n    prev_distance = path_distance(cities)\n    T = 1.0\n    T_min = 0.00001\n    alpha = 0.9\n    while T > T_min:\n        i = 1\n        while i <= 500:\n            i += 1\n            new_path = generate_path(cities)\n            curr_distance = path_distance(new_path)\n            ap = accept_prob(prev_distance, curr_distance, T)\n            if ap > random.random():\n                cities = new_path[:]\n                prev_distance = curr_distance\n        T *= alpha\n    return cities\n\n# Calculate the acceptance probability\ndef accept_prob(prev_distance, curr_distance, T):\n    if curr_distance < prev_distance:\n        return 1\n    return math.exp(-abs(curr_distance - prev_distance) / T)\n\n# Main program begins here \nif __name__== \"__main__\":\n # List of cities:\n cities =  [[0, 0], [1, 1], [2, 3], [3, 2]]\n \n # Main loop\n path = anneal(cities)\n print(\"Optimized Path:\")\n for p in path:\n \tprint(p)"
+  },
+  {
+    "instruction": "Create a basic implementation of a linked list using Python.",
+    "input": "",
+    "output": "class Node: \n    def __init__(self, data): \n        self.data = data  \n        self.next = None \n  \nclass LinkedList: \n    def __init__(self):  \n        self.head = None\n  \n    def push(self, new_data): \n        new_node = Node(new_data) \n        new_node.next = self.head  \n        self.head = new_node  \n  \n    def print_list(self): \n        temp = self.head  \n        while (temp): \n            print (temp.data) \n            temp = temp.next\n  \n # Driver code \nllist = LinkedList() \nllist.push(1) \nllist.push(3) \nllist.push(11) \nllist.push(5) \nllist.push(9) \n  \nllist.print_list()"
+  },
+  {
+    "instruction": "Create a Python program to convert user entered infix expression to postfix expression.",
+    "input": "A * B + C",
+    "output": "class Conversion: \n      \n    def __init__(self, capacity): \n        self.top = -1\n        self.capacity = capacity \n        self.array = [] \n        self.output = [] \n        self.precedence = {'+':1, '-':1, '*':2, '/':2, '^':3} \n      \n    def isEmpty(self): \n        return True if self.top == -1 else False\n      \n    def peek(self): \n        return self.array[-1]\n      \n    def pop(self): \n        if not self.isEmpty(): \n            self.top -= 1\n            return self.array.pop() \n        elsE: \n            return \"$\"\n      \n    def push(self, op): \n        self.top += 1\n        self.array.append(op)\n      \n    def infixToPostfix(self, exp):\n        for i in exp: \n            if i.isalpha(): \n                self.output.append(i)\n            elif i == '(': \n                self.push(i)\n            elif i == ')': \n                while( (not self.isEmpty()) and self.peek() != '('): \n                    a = self.pop() \n                    self.output.append(a) \n                if (not self.isEmpty() and self.peek() != '('): \n                    return -1\n                else: \n                    self.pop()\n            else: \n                while(not self.isEmpty() and self.precedence[i] <= self.precedence[self.peek()]):\n                    self.output.append(self.pop())\n                self.push(i)\n        while not self.isEmpty():\n            self.output.append(self.pop())\n        return \"\".join(self.output)\n\nexp = \"A * B + C\"\nconversion = Conversion(len(exp)) \nresult = conversion.infixToPostfix(exp) \nprint(result)"
+  },
+  {
+    "instruction": "Write a function in Python that converts a given date-time string into a specified timestamp format.",
+    "input": "String date-time: \"2020-05-02 15:30:00\"\nTimestamp format: %Y/%m/%d %H:%M:%S",
+    "output": "import datetime\ndef convert_datetime_to_timestamp(date_time, timestamp_format):\n    return datetime.strptime(date_time, \"%Y-%m-%d %H:%M:%S\").strftime(timestamp_format)"
+  },
+  {
+    "instruction": "Create a Python module that evaluates a given expression and returns the result",
+    "input": "\"2+2*2\"",
+    "output": "def evaluate(expr):\n    return eval(expr)"
+  },
+  {
+    "instruction": "Create a function in Python to concatenate two strings and return the concatenated string.",
+    "input": "",
+    "output": "def concatenate_strings(str1, str2):\n  return str1 + str2"
+  },
+  {
+    "instruction": "Create a Python script to print characters from the \"abcd\" string until the total of characters printed reaches 50.",
+    "input": "",
+    "output": "string = \"abcd\"\ncount = 0\nwhile count < 50:\n    for ch in string:\n        print(ch)\n        count += 1\n    if count >= 50:\n        break"
+  },
+  {
+    "instruction": "Generate a web scraper in Python to scrape out 10 latest tweets from the page of a Twitter profile.",
+    "input": "",
+    "output": "import tweepy \nimport pandas as pd\n\n# Authentication credentials \nconsumer_key = 'XXXXXXXXXXXXXXXXXXXXX'\nconsumer_secret = 'XXXXXXXXXXXXXXXXXXXXX'\naccess_token = 'XXXXXXXXXXXXXXXXXXXXX'\naccess_token_secret = 'XXXXXXXXXXXXXXXXXXXXX'\n\n# Authenticating the access \nauth = tweepy.OAuthHandler(consumer_key, consumer_secret) \nauth.set_access_token(access_token, access_token_secret) \napi = tweepy.API(auth) \n\n# Fetching tweets\ntweets = api.user_timeline('username') \n\n# Parsing the tweets\ndef parse_tweets(tweets): \n    # Creating a list to store the parsed tweets \n    parsed_tweets = [] \n  \n    # appending parsed tweets to the list \n    for tweet in tweets[:10]: \n        # Fetching tweets and  \n        # printing the fetched tweets \n        parsed_tweets.append({'created_at': tweet.created_at, 'text': tweet.text})\n  \n    # Returning the quotes \n    return parsed_tweets \n\n# Printing the parsed tweets \ntweets_list = parse_tweets(tweets) \nprint(tweets_list)"
+  },
+  {
+    "instruction": "Create a Python program to count the number of upper case and lower case letters in a given string",
+    "input": "Hello World",
+    "output": "def countLetters(s): \n   uppercase, lowercase = 0, 0\n   for x in s: \n      if x.islower(): \n         lowercase+= 1\n      elif x.isupper(): \n         uppercase+= 1\n   print (\"No. of Upper case characters : \", uppercase) \n   print (\"No. of Lower case Characters : \", lowercase) \n\ncountLetters('Hello World')"
+  },
+  {
+    "instruction": "Design an algorithm in Python for finding the longest common subsequence between two strings.",
+    "input": "\"AGGTAB\", \"GXTXAYB\"",
+    "output": "def lcs(a, b): \n    lengths = [[0 for j in range(len(b)+1)] for i in range(len(a)+1)] \n    \n    # row 0 and column 0 are initialized to 0 already \n    for i, x in enumerate(a): \n        for j, y in enumerate(b): \n            if x == y: \n                lengths[i+1][j+1] = lengths[i][j] + 1\n            else: \n                lengths[i+1][j+1] = \\\n                    max(lengths[i+1][j], lengths[i][j+1]) \n  \n    # read the substring out from the matrix \n    result = \"\" \n    x, y = len(a), len(b) \n    while x != 0 and y != 0: \n        if lengths[x][y] == lengths[x-1][y]: \n            x -= 1\n        elif lengths[x][y] == lengths[x][y-1]: \n            y -= 1\n        else: \n            assert a[x-1] == b[y-1] \n            result = a[x-1] + result \n            x -= 1\n            y -= 1\n              \n    return result"
+  },
+  {
+    "instruction": "Generate a python program that removes all whitespace from a string.",
+    "input": "\"This    is    a   string    with    whitespace\"",
+    "output": "def remove_whitespace(x):\n   return x.replace(\" \", \"\")"
+  },
+  {
+    "instruction": "Transform the following code written in Java to code written in Python.",
+    "input": "public static int largest(int[] array) {\n int largest = array[0];\n for (int i = 1; i < array.length; i++) {\n  if (array[i] > largest) {\n   largest = array[i];\n  }\n }\n return largest;\n}",
+    "output": "def largest(array):\n largest = array[0]\n for i in range(1, len(array)):\n  if array[i] > largest:\n   largest = array[i]\n return largest"
+  },
+  {
+    "instruction": "Modify the given code such that a python list of strings is created based on the input.",
+    "input": "lst = [1, 2, 3]",
+    "output": "lst_strs = []\nfor i in lst:\n    lst_strs.append(str(i))"
+  },
+  {
+    "instruction": "Create a Python program to sort a list of dictionaries by a value of one of the dictionary's keys.",
+    "input": "# List of dictionaries\ndata = [\n    {'name': 'Brian', 'age': 32},\n    {'name': 'Anna', 'age': 25},\n    {'name': 'John', 'age': 28}\n]\n\nkey = 'age'",
+    "output": "# function to sort a list of dictionaries by a value of one of the dictionary's keys\ndef SortDictByKey(data, key):\n    return sorted(data, key=lambda i: i[key])\n\n# List of dictionaries\ndata = [\n    {'name': 'Brian', 'age': 32},\n    {'name': 'Anna', 'age': 25},\n    {'name': 'John', 'age': 28}\n]\n\nkey = 'age'\n# Print the sorted output\nprint(\"Sorted list of dictionaries is : \", SortDictByKey(data, key))"
+  },
+  {
+    "instruction": "Create a text parser in Python that converts a given string into an integer.",
+    "input": "\"47\"",
+    "output": "def parse_int(string):\n return int(string)\n\nresult = parse_int(\"47\")\nprint(result)\n\n# Result: 47"
+  },
+  {
+    "instruction": "Code a Python class for evaluating a decision tree model.",
+    "input": "",
+    "output": "class DecisionTreeEvaluator():\n    \"\"\"\n    Decision Tree model evaluation implementation.\n    \"\"\"\n    def __init__(self):\n        self.model = model\n \n    def evaluate(self, X_test, y_test):\n        \"\"\"\n        Evaluates the given decision tree model on the given test data.\n \n        Parameters\n        ----------\n        X_test : array-like, shape = [n_samples, n_features]\n        Test samples.\n \n        y_test : array-like, shape = [n_samples]\n        True labels for X_test.\n \n        Returns\n        -------\n        accuracy : float\n        The accuracy of the decision tree model.\n        \"\"\"\n        y_pred = self.model.predict(X_test)\n        accuracy = accuracy_score(y_test, y_pred)\n        return accuracy"
+  },
+  {
+    "instruction": "Come up with a solution to optimize a classifier model in Python.",
+    "input": "",
+    "output": "# Importing necessary libraries \nimport numpy as np \nfrom sklearn.model_selection import GridSearchCV\nfrom sklearn.metrics import accuracy_score\n\n# Defining the function which takes the classifier object and optimizes it\ndef optimize_model(classifier, parameters):\n    # Create a GridSearchCV object, which will use 5-fold cross validation \n    clf = GridSearchCV(classifier, parameters, scoring = 'accuracy', cv = 5)\n\n    # Fit the model on the training data \n    clf.fit(X_train, y_train)\n\n    # Predict the values on the test dataset\n    y_pred = clf.predict(X_test)\n\n    # Calculate the accuracy score\n    accuracy = accuracy_score(y_test, y_pred)\n    \n    # Print the accuracy\n    print('Accuracy: {:.2f}%'.format(accuracy*100)) \n\n    # Return the best parameters and the classifier\n    return clf.best_params_, clf"
+  },
+  {
+    "instruction": "Write a Python script to print the frequency of occurrence of characters in a given string.",
+    "input": "text = \"Hello World\"",
+    "output": "def char_frequency(text):\n    chars = {}\n    for c in text:\n        if c not in chars:\n            chars[c] = 0\n        chars[c] += 1\n    return chars\n    \nprint(char_frequency(text))"
+  },
+  {
+    "instruction": "Create a program in Python to play a simple guessing game.",
+    "input": "",
+    "output": "import random \n  \n# randomly \nnumber = random.randint(1, 20) \nprint(\"I am thinking of a number between 1 and"
+  },
+  {
+    "instruction": "Write a Python script that receives a string from the command line and prints out the string in reverse order.",
+    "input": "\"This is my string.\"",
+    "output": "import sys\n\ninput_string = sys.argv[1]\nprint(input_string[::-1])"
+  },
+  {
+    "instruction": "Develop a classifier in Python to distinguish between different sounds.",
+    "input": "",
+    "output": "import librosa\nfrom tensorflow.keras.layers import Input, Dense\nfrom tensorflow.keras.models import Model\n\n# Get the data\nx_data, y_data = librosa.load('mySound.wav', sr=44100)\n\n# Preprocess the data\nx_data = librosa.util.normalize(x_data)\n\n# Reshape the data (optional)\nx_data = x_data.reshape((1, -1))\n\n# Create a model\ninputs = Input(shape=(x_data.shape[1], ))\nx = Dense(512, activation='relu')(inputs)\nx = Dense(256, activation='relu')(x)\npredictions = Dense(1, activation='sigmoid')(x)\n\nmodel = Model(inputs=inputs, outputs=predictions)\n\n# Compile the model\nmodel.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])\n\n# Train the model\nmodel.fit(x_data, y_data, epochs=10)"
+  },
+  {
+    "instruction": "Develop a Python program that prints \"Hello, World!\" whenever it is run.",
+    "input": "",
+    "output": "#Python program to print \"Hello World!\"\n\nprint(\"Hello, World!\")"
+  },
+  {
+    "instruction": "Construct a Python script that deletes all the characters in a given string except for the vowels.",
+    "input": "\"Hello World!\"",
+    "output": "# Get the input string\nstring = \"Hello World!\"\n\n# Modify the string\nvowels = \"aeiou\"\nnew_string = \"\"\nfor char in string:\n    if char in vowels:\n        new_string += char\n\n# Print the string\nprint(new_string)\n# prints \"eoo\""
+  },
+  {
+    "instruction": "Use matplotlib in Python to create a pie chart depicting a survey result.",
+    "input": "topic = \"Favorite fruits\"\nresponses = { 'banana': 5, 'apple': 7, 'strawberry': 10, 'mango': 6 }",
+    "output": "import matplotlib.pyplot as plt\n \nlabels = list(responses.keys())\nvalues = list(responses.values())\ncolors = ['#F08080', '#F8A458', '#9BC808', '#000080']\n \nplt.pie(values, labels = labels, colors = colors, autopct='%1.2f%%')\nplt.title('Favorite Fruits')\nplt.axis('equal')\nplt.show()"
+  },
+  {
+    "instruction": "Create a basic Twitter bot using Python and Tweepy for publishing tweets.",
+    "input": "Not applicable",
+    "output": "import tweepy\n\n# authentication\nconsumer_key = 'YOUR_CONSUMER_KEY'\nconsumer_secret = 'YOUR_CONSUMER_SECRET'\naccess_token = 'YOUR_ACCESS_TOKEN'\naccess_token_secret = 'YOUR_ACCESS_TOKEN_SECRET'\n\nauth = tweepy.OAuthHandler(consumer_key, consumer_secret)\nauth.set_access_token(access_token, access_token_secret)\napi = tweepy.API(auth)\n\n# Tweeting\ntext = 'Hello, world!'\napi.update_status(text)"
+  },
+  {
+    "instruction": "Construct a decision tree classifier in Python, to classify an animal based on body characteristics.",
+    "input": "Not applicable",
+    "output": "from sklearn import tree\n\n# features (characteristicsof animals)\n# 0 for false, 1 for true\nfeatures = [[1, 0], [1, 1], [0, 1], [0, 0]]\n\n# labels of features (types of animals)\nlabels = [0, 0, 1, 1]\n\n# decision tree classifier\nclf = tree.DecisionTreeClassifier()\n\n# train the classifier with the data\nclf = clf.fit(features, labels)\n\n# test a prediction\nprediction = clf.predict([[1, 0]])\n\n# print the result\nprint(prediction) # [0]"
+  },
+  {
+    "instruction": "Create a python script that takes in a string and prints the string reversed",
+    "input": "",
+    "output": "def reverse_str(str):\n    return str[::-1]\n\n# Example\nprint(reverse_str(\"Hello World!\"))  # Prints !dlroW olleH"
+  },
+  {
+    "instruction": "Describe the given Python code snippet.",
+    "input": "def count_ones(n):\n    count = 0\n    while n > 0:\n        if n & 1 == 1:\n            count += 1\n        n = n >> 1\n    return count",
+    "output": "The given code snippet defines a function called 'count_ones' which takes a single integer argument 'n'. It then initializes a count variable which is used to keep track of the number of ones in binary representation of the given argument. It then executes a loop which runs until all bits of the argument are processed in binary representation. It uses bitwise & operation on the argument with 1 and then compares the result with 1 to recognize whether the bit is 1 or 0. If it is 1, it increments the count by 1, and if it is 0, it does nothing. Finally, it shifts the argument to the right by 1 bit before looping back and processes the next bit."
+  },
+  {
+    "instruction": "Develop a Python class to represent a stack with the functions push, pop and peek.",
+    "input": "",
+    "output": "class Stack:\n    def __init__(self):\n        self.items = []\n    \n    def push(self, item):\n        self.items.append(item)\n    \n    def pop(self):\n        if self.is_empty():\n            return None\n        return self.items.pop()\n    \n    def peek(self):\n        if self.is_empty():\n            return None\n        return self.items[-1]\n    \n    def is_empty(self):\n        return self.items == []"
+  },
+  {
+    "instruction": "Write a Python program to select rows with score greater than 8 from the given Pandas DataFrame.",
+    "input": "data = { 'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],\n'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],\n'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],\n'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes'] }",
+    "output": "import pandas as pd\n\n# Create a DataFrame from given data\ndata = { 'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],\n'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],\n'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],\n'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}\n\ndf = pd.DataFrame(data)\n\n# Select rows with score greater than 8\ndf_selected = df[df['score'] > 8]\n\n# Print dataframe\nprint(df_selected)"
+  },
+  {
+    "instruction": "Create a python code to find the intersection of two sets.",
+    "input": "{1,2,3,4,5} and {3,4,5,6,7}",
+    "output": "# Create two sets\nset1 = {1,2,3,4,5}\nset2 = {3,4,5,6,7}\n\n# Find the intersection\nintersection = set1 & set2\n\n# Print the result\nprint(intersection)"
+  },
+  {
+    "instruction": "Generate a program to extract the substring from a given string",
+    "input": "string = 'Python is fun'\nstart = 7\nend = 11",
+    "output": "def extract_substring(string, start, end):\n    substr = string[start : end]\n    return substr\n\nstring = 'Python is fun'\nstart = 7\nend = 11\n\nprint(extract_substring(string, start, end))"
+  },
+  {
+    "instruction": "Write a function to return the first n prime numbers in Python.",
+    "input": "Number of Prime Numbers needed: 5",
+    "output": "def firstPrimeNumbers(number): \n    primeNumbers = [] \n  \n    for num in range(1, number + 1): \n \n        if (num > 1): \n            for i in range(2, num): \n                if (num % i == 0): \n                    break\n            else: \n                primeNumbers.append(num)\n    return primeNumbers\n  \n# Test code \nprime = firstPrimeNumbers(5) \nprint(prime)"
+  },
+  {
+    "instruction": "Design and implement a program in Python that converts temperatures from Celsius to Fahrenheit and vice versa.",
+    "input": "",
+    "output": "def cel_to_fahr(cel):\n    return cel * (9 / 5) + 32\n  \ndef fahr_to_cel(fahr):\n    return (fahr - 32) * (5 / 9)"
+  },
+  {
+    "instruction": "Create a Python program to create a pandas DataFrame containing data about cars. Include columns for make, model, price, and mpg.",
+    "input": "Not applicable",
+    "output": "import pandas as pd\n\ncolumn_names = [\"make\", \"model\", \"price\", \"mpg\"]\ncars = [ \n    [\"Toyota\", \"Camry\", 23000, 28],\n    [\"Honda\", \"Accord\", 21000, 30],\n    [\"Ford\", \"Ecosport\", 20000, 25],\n    [\"Hyundai\", \"Elantra\", 22000, 27],\n    [\"Toyota\", \"Corolla\", 18000, 35],\n    [\"Honda\", \"Civic\", 19000, 32],\n    [\"Ford\", \"Escape\", 24000, 24],\n    [\"Hyundai\", \"Sonata\", 19500, 29]\n]\n\ndf = pd.DataFrame(cars, columns=column_names)\nprint(df)"
+  },
+  {
+    "instruction": "Create a Python program to aggregate data from multiple sources and store the data in a MongoDB database.",
+    "input": "Not applicable",
+    "output": "import requests\nimport pymongo\n\n# Establish connection to MongoDB\nclient = pymongo.MongoClient('mongodb://localhost:27017/')\ndb = client['aggregated_data']\n\n# Make a request to each API and aggregate the data\ndata_points = []\nfor url in ['url_1', 'url_2', etc.]:\n req = requests.get(url)\n data_points.append(req.json())\n\n# Store the data in the MongoDB database\ndb.aggregated_data.insert_many(data_points)"
+  },
+  {
+    "instruction": "Edit the following Python function to return a sorted list of the words in the given string.",
+    "input": "def get_words(text):\n    words = text.split()\n    return words",
+    "output": "def get_words(text):\n    words = text.split()\n    return sorted(words)"
+  },
+  {
+    "instruction": "Write a Python program to calculate the sum of two numbers (input in separate lines) and print it.",
+    "input": "2\n3",
+    "output": "num1 = int(input())\nnum2 = int(input())\nsum_of_nums\nprint(sum_of_nums)"
+  },
+  {
+    "instruction": "Generate a Python script that prints the numbers from 1 to 10.",
+    "input": "",
+    "output": "# Print numbers 1 to 10\nfor num in range(1, 11):\n    print(num)"
+  },
+  {
+    "instruction": "Generate a Python function for calculating the probability of two events occurring simultaneously.",
+    "input": "",
+    "output": "def probability_of_two_events(probability_of_first_event, probability_of_second_event):\n    \"\"\"\n    Calculates the probability of two independent events occurring simultaneously.\n    \n    Args:\n        probability_of_first_event (float): The probability of the first event occuring.\n        probability_of_second_event (float): The probability of the second event occuring.\n    \n    Returns: \n        float: The probability of both events occurring simultaneously.\n    \"\"\"\n       \n    probability = probability_of_first_event * probability_of_second_event\n    \n    return probability"
+  },
+  {
+    "instruction": "Edit a Python program to optimize the code while computing the Fibonacci series.",
+    "input": "# Fibonacci series program\ndef fibonacci(n):\n # base case\n if n == 0:\n  return 0\n elif n == 1:\n  return 1\n else:\n  return (fibonacci(n - 1) + fibonacci(n - 2))",
+    "output": "# Fibonacci series program\ndef fibonacci(n, f_values):\n # base case\n if n == 0:\n  return 0\n elif n == 1:\n  return 1\n if n in f_values:\n  return f_values[n]\n else:\n  f_values[n] = fibonacci(n-1, f_values) + fibonacci(n-2, f_values)\n  return f_values[n]\n\n# calculate the fibonacci series\ndef calculate_fibonacci(n):\n f_values = {}\n for i in range(n+1):\n  value = fibonacci(i, f_values)\n  print(f\"{i}: {value}\")"
+  },
+  {
+    "instruction": "Write a Python program to identify the most common words used in a list of text strings.",
+    "input": "the quick brown fox;\njumped over the lazy dog",
+    "output": "from collections import Counter\n\ninput_strings = []\ninput_string = \"the quick brown fox\"\ninput_strings.append(input_string)\ninput_string = \"jumped over the lazy dog\"\ninput_strings.append(input_string)\n\nwords = []\nfor input_string in input_strings:\n words.extend(input_string.split(\" \"))\n\nword_counts = Counter(words)\n\nmost_common_words = word_counts.most_common()\n\nprint(\"The most common words are:\")\nfor word, count in most_common_words:\n print(f\"{word} ({count})\")"
+  },
+  {
+    "instruction": "Develop a Python program to count the total characters from a given list of words.",
+    "input": "[\"Apple\", \"Banana\", \"Orange\"]",
+    "output": "words = [\"Apple\", \"Banana\", \"Orange\"]\ntotal_chars = 0\n\nfor word in words:\n    total_chars += len(word)\n\nprint(total_chars) # Output: 15"
+  },
+  {
+    "instruction": "Design a Python program that analyses the sentiment of a given text.",
+    "input": "\"I love programming\"",
+    "output": "import nltk\nfrom nltk.sentiment.vader import SentimentIntensityAnalyzer\n\ntext = \"I love programming\"\n\nsid = SentimentIntensityAnalyzer()\nscores = sid.polarity_scores(text)\n\nif scores['compound'] > 0.0:\n print(\"Positive sentiment\")\nelif scores['compound'] == 0.0:\n print(\"Neutral sentiment\")\nelse:\n print(\"Negative sentiment\")\n\n# Output: Positive sentiment"
+  },
+  {
+    "instruction": "Develop an algorithm in Python to store a set of objects in the most efficient data structure.",
+    "input": "Objects: [1, 2, 3, 4, 5]",
+    "output": "def store_elements(elements):\n    store = []\n    for i in elements:\n        store.append(i)\n    return store\n\nobjects = [1, 2, 3, 4, 5]\nstorage = store_elements(objects)\nprint(storage)"
+  },
+  {
+    "instruction": "Using OOP principles, create a Python class vehicle that has 3 attributes: \"make\", \"year\", \"model\"",
+    "input": "class Vehicle:\n    def __init__(self, make, model, year):\n        self.make = make\n        self.model= model\n        self.year = year",
+    "output": "class Vehicle():\n    def __init__(self, make, model, year):\n        self.make = make\n        self.model = model\n        self.year = year\n\n    def get_make(self):\n        return self.make\n\n    def get_model(self):\n        return self.model\n\n    def get_year(self):\n        return self.year"
+  },
+  {
+    "instruction": "Generate a python program to determine if two objects are mutually exclusive or not.",
+    "input": "Input objects are ([1,2,3], [4,5,6]).",
+    "output": "def mutually_exclusive(object1, object2):\n    if len(object1.intersection(object2)) > 0:\n        return False\n    else:\n        return True\n    \nobject1 = set([1, 2, 3])\nobject2 = set([4, 5, 6])\n\nresult = mutually_exclusive(object1, object2)\nprint(result) # Outputs True as objects don't share elements."
+  },
+  {
+    "instruction": "Create a Python program that prints the sum of all integers that are divisible by 3 and 5 from 0 to a given number.",
+    "input": "Max number: 10",
+    "output": "def sum_divisible_by_3_and_5(n):\n s = 0\n for i in range(n + 1):\n if i % 3 == 0 or i % 5 == 0:\n s += i\n return s\n\nprint(sum_divisible_by_3_and_5(10)) # 33"
+  },
+  {
+    "instruction": "Design an API in Python that can generate a random password with no less than 8 characters.",
+    "input": "Not applicable",
+    "output": "import string\nimport random\n\ndef generate_password():\n chars = string.ascii_letters + string.digits + string.punctuation\n length = 8\n return ''.join(random.choices(chars, k=length))\n\n# Generate password\npassword = generate_password()\nprint(password)"
+  },
+  {
+    "instruction": "Generate a Python script to detect the most frequent word in a sentence.",
+    "input": "",
+    "output": "def most_frequent_word(s): \n    words = s.split() \n    freq_word = words[0] \n    freq_count = 1 \n      \n    for i in range(1, len(words)): \n        if words[i] == freq_word: \n            freq_count += 1\n        else: \n            if freq_count > 1: \n                freq_word = words[i] \n                freq_count = 1\n      \n    return freq_word"
+  },
+  {
+    "instruction": "Estimate the performance overhead of a certain JavaScript operation compared to an operation in Python.",
+    "input": "",
+    "output": "To estimate the relative performance of the JavaScript operation compared to the Python operation, we can use benchmarking or algorithmic analysis. Specifically, we can compare the running time complexity of the two algorithms. If one algorithm is more complex than the other, it will likely have greater relative performance overhead. To make the comparison more accurate, we can also consider the implementation of the algorithms, such as the data structure and language-specific optimization techniques used."
+  },
+  {
+    "instruction": "Create a function to extract the first key of a given dictionary in Python.",
+    "input": "",
+    "output": "def get_first_key(d):\n    if d:\n        return next(iter(d))\n    return None"
+  },
+  {
+    "instruction": "Create a Python program for a count the number of occurrences of each letter in a given string.",
+    "input": "",
+    "output": "def count_occurrences(string): \n    strings = list(string)\n    dict = dict() \n    for letter in strings: \n        if (letter in dict): \n            dict[letter] += 1\n        else: \n            dict[letter] = 1\n    return dict\n  \nmy_string = 'Hello World!'\nletter_occurrences = count_occurrences(my_string)\nprint(letter_occurrences)"
+  },
+  {
+    "instruction": "Re-write the following SQL query in Python.",
+    "input": "SELECT * FROM Movies WHERE category = 'horror';",
+    "output": "import sqlite3\n\nconn = sqlite3.connect('movies.db') \ncursor = conn.cursor()\n\ncursor.execute(\"SELECT * FROM Movies WHERE category = 'horror'\")\n\nresult = cursor.fetchall()\nfor row in result:\n    print(row)\n\nconn.close()"
+  },
+  {
+    "instruction": "Generate a python program to create a Pandas DataFrame using the following input data.",
+    "input": "Input:\ndata = {'Country':[\"United States\", \"France\", \"China\"], \n'Population': [330, 67, 13]}",
+    "output": "import pandas as pd\n\n# Create the data frame\ndata_frame = pd.DataFrame(data)\n  \n# Print the data frame\nprint(data_frame)"
+  }
+]

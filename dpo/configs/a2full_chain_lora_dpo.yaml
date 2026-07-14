@@ -1,0 +1,60 @@
+### model
+model_name_or_path: ./dpo/outputs/a2full_dpo_lora_ppo_20260706/full_dpo
+trust_remote_code: true
+ref_model: ./dpo/outputs/a2full_dpo_lora_ppo_20260706/full_dpo
+
+### method
+stage: dpo
+do_train: true
+do_eval: true
+finetuning_type: lora
+pref_beta: 0.1
+pref_loss: sigmoid
+
+### LoRA
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target: q_proj,v_proj
+
+### dataset
+dataset_dir: ./dpo/data
+dataset: code_dpo_chain_train
+eval_dataset: code_dpo_chain_eval
+template: qwen3
+enable_thinking: false
+cutoff_len: 1024
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: ./dpo/outputs/a2full_dpo_lora_ppo_20260706/lora_dpo
+logging_steps: 5
+save_strategy: epoch
+save_total_limit: 1
+plot_loss: true
+overwrite_output_dir: false
+save_only_model: true
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_grad_norm: 1.0
+gradient_checkpointing: true
+bf16: true
+fp16: false
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval and early stopping
+eval_strategy: epoch
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+early_stopping_steps: 1

@@ -1,0 +1,71 @@
+{
+  "code_dpo_train": {
+    "file_name": "code_dpo_train.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_test": {
+    "file_name": "code_dpo_test.json"
+  },
+  "code_ppo_train": {
+    "file_name": "code_ppo_train.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "code_dpo_chain_train": {
+    "file_name": "code_dpo_chain_train.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "code_dpo_chain_eval": {
+    "file_name": "code_dpo_chain_eval.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "a2_pref_calib_train": {
+    "file_name": "a2_pref_calib_train.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "a2_pref_calib_eval": {
+    "file_name": "a2_pref_calib_eval.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "a2full_reward_ppo_train": {
+    "file_name": "a2full_reward_ppo_train.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

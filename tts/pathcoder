@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_ROOT="/root/project"
+PYTHON_BIN="${PYTHON_BIN:-/opt/conda/envs/shixun/bin/python}"
+CLI="${PROJECT_ROOT}/tts/showcase_cli.py"
+
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+
+command="${1:-studio}"
+if [[ $# -gt 0 ]]; then
+  shift
+fi
+
+case "${command}" in
+  studio|system|interactive)
+    exec "${PYTHON_BIN}" "${CLI}" "$@"
+    ;;
+  run)
+    exec "${PYTHON_BIN}" "${CLI}" "$@"
+    ;;
+  metrics)
+    if [[ "${1:-}" == "--all" ]]; then
+      shift
+      exec "${PYTHON_BIN}" "${CLI}" --show_all_metrics --include_smoke "$@"
+    fi
+    exec "${PYTHON_BIN}" "${CLI}" --show_all_metrics "$@"
+    ;;
+  metrics-all)
+    exec "${PYTHON_BIN}" "${CLI}" --show_all_metrics --include_smoke "$@"
+    ;;
+  analyze|analysis)
+    exec "${PYTHON_BIN}" "${CLI}" --analyze_results "$@"
+    ;;
+  performance)
+    exec "${PYTHON_BIN}" "${CLI}" --show_performance "$@"
+    ;;
+  examples)
+    exec "${PYTHON_BIN}" "${CLI}" --list_examples "$@"
+    ;;
+  strategies)
+    exec "${PYTHON_BIN}" "${CLI}" --show_strategies "$@"
+    ;;
+  history)
+    exec "${PYTHON_BIN}" "${CLI}" --show_history "$@"
+    ;;
+  doctor)
+    exec "${PYTHON_BIN}" "${CLI}" --doctor "$@"
+    ;;
+  export)
+    output="${PROJECT_ROOT}/tts/outputs/project_evaluation_catalog.json"
+    if [[ $# -gt 0 && "${1}" != -* ]]; then
+      output="${1}"
+      shift
+    fi
+    exec "${PYTHON_BIN}" "${CLI}" --export_catalog "${output}" "$@"
+    ;;
+  version)
+    exec "${PYTHON_BIN}" "${CLI}" --version
+    ;;
+  help|-h|--help)
+    cat <<'EOF'
+PathCoder - Python 代码推演与验证工作台
+
+用法:
+  pathcoder                         启动交互工作台
+  pathcoder run [选项]              运行单次任务
+  pathcoder examples                查看内置任务
+  pathcoder strategies              比较推理策略
+  pathcoder history                 查看最近会话
+  pathcoder doctor                  检查模型、GPU 和输出目录
+  pathcoder performance             查看核心正式成绩
+  pathcoder metrics [--all]         查看项目指标
+  pathcoder analyze                 查看效果分析
+  pathcoder export [路径]           导出指标 JSON
+  pathcoder version                 显示版本
+
+快速开始:
+  pathcoder run --example two_sum --strategy greedy
+  pathcoder run --example merge_intervals --strategy hybrid
+  pathcoder run --task "Write a function add(a, b)." --test "assert add(1, 2) == 3"
+
+高级参数:
+  pathcoder run --help
+
+兼容入口 final 和 final-system 仍然可用。
+EOF
+    ;;
+  -*)
+    exec "${PYTHON_BIN}" "${CLI}" "${command}" "$@"
+    ;;
+  *)
+    echo "未知命令：${command}" >&2
+    echo "运行 'pathcoder help' 查看可用命令。" >&2
+    exit 2
+    ;;
+esac
