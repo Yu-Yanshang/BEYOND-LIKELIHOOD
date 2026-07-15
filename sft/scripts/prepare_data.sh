@@ -26,7 +26,7 @@ fi
 
 # 可选的质量过滤开关（通过环境变量 ENABLE_QUALITY_FILTER=1 启用）
 QUALITY_ARG=""
-if [ "${ENABLE_QUALITY_FILTER:-1}" = "1" ]; then
+if [ "${ENABLE_QUALITY_FILTER:-1}" = "0" ]; then
     QUALITY_ARG="--enable_quality_filter"
 fi
 
